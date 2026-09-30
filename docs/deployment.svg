@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 640" width="2360" height="1280">
+<rect width="1180" height="640" fill="#fbfcfd"/>
+<style>text{font-family:'Helvetica Neue',Arial,sans-serif;fill:#1d2a33}.t{font-size:15px;font-weight:700}.s{font-size:12px;fill:#4a5a66}.h{font-size:13px;font-weight:700;fill:#2f6db5}
+.b{fill:#fff;stroke:#b8c4cc;stroke-width:1.5}.z{fill:#f1f6fa;stroke:#2f6db5;stroke-width:1.5;stroke-dasharray:6 5}.g{fill:#e6f5f0;stroke:#0c7a64;stroke-width:2.5}.p{stroke:#7a5bc4}.o{stroke:#c77700}
+.a{fill:none;stroke:#6b7b86;stroke-width:1.8;marker-end:url(#m)}</style>
+<defs><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#6b7b86"/></marker></defs>
+<text x="20" y="32" class="t" style="font-size:20px">Health Companion — what is deployed (AWS us-west-2)</text>
+<rect x="20" y="70" width="170" height="80" rx="8" class="b o"/><text x="34" y="98" class="t">Web UI</text><text x="34" y="118" class="s">Streamlit (webui/app.py)</text><text x="34" y="136" class="s">localhost:8501</text>
+<rect x="240" y="50" width="420" height="330" rx="10" class="z"/><text x="256" y="74" class="h">AgentCore Runtime</text>
+<rect x="260" y="90" width="380" height="100" rx="8" class="b"/><text x="276" y="116" class="t">HealthAgent (Strands, Python 3.14)</text><text x="276" y="137" class="s">AgentCoreProject_HealthAgent-anMoKd98GM</text><text x="276" y="156" class="s">1. guardrail checks the question  2. model + tools answer</text><text x="276" y="175" class="s">red-flag rule → emergency, no booking</text>
+<rect x="260" y="215" width="180" height="70" rx="8" class="b"/><text x="274" y="243" class="t">AgentCore Memory</text><text x="274" y="263" class="s">health_memory</text>
+<rect x="460" y="215" width="180" height="70" rx="8" class="b"/><text x="474" y="243" class="t">IAM role</text><text x="474" y="263" class="s">AgentCore-…HealthAge…</text>
+<text x="260" y="320" class="s">Deployed with agentcore deploy (CDK stack</text><text x="260" y="338" class="s">AgentCore-AgentCoreProject-default, CodeZip)</text>
+<rect x="720" y="50" width="200" height="80" rx="8" class="g"/><text x="734" y="78" class="t">Bedrock Guardrail</text><text x="734" y="98" class="s">zb5bp8vak7r6 · version 3</text><text x="734" y="116" class="s">3 denied topics + filters</text>
+<rect x="720" y="150" width="200" height="70" rx="8" class="b"/><text x="734" y="178" class="t">Bedrock model</text><text x="734" y="198" class="s">Claude Sonnet 5</text>
+<rect x="720" y="250" width="200" height="80" rx="8" class="b p"/><text x="734" y="278" class="t">AgentCore Gateway</text><text x="734" y="298" class="s">workshop-gateway (MCP)</text><text x="734" y="316" class="s">Cognito JWT auth</text>
+<rect x="720" y="360" width="200" height="90" rx="8" class="b p"/><text x="734" y="388" class="t">Lambda</text><text x="734" y="408" class="s">workshop-health-tools</text><text x="734" y="426" class="s">5 tools: profile, meds,</text><text x="734" y="442" class="s">providers, book, summary</text>
+<rect x="970" y="330" width="190" height="70" rx="8" class="b p"/><text x="984" y="358" class="t">DynamoDB</text><text x="984" y="378" class="s">workshop-health-patients/providers</text>
+<rect x="970" y="420" width="190" height="70" rx="8" class="b p"/><text x="984" y="448" class="t">Knowledge Base</text><text x="984" y="468" class="s">XRKZPVF0HC (S3 vectors)</text>
+<rect x="970" y="250" width="190" height="60" rx="8" class="b"/><text x="984" y="276" class="t">Cognito</text><text x="984" y="294" class="s">workshop-gateway-auth</text>
+<rect x="20" y="480" width="500" height="120" rx="10" class="b" style="stroke-dasharray:5 4"/><text x="36" y="506" class="t">Not built yet (M3 next)</text><text x="36" y="530" class="s">• Step Functions patient journey (triage → risk → search → book → summary)</text><text x="36" y="550" class="s">• Textract prescription reading: S3 upload → Textract → medications → Lambda</text><text x="36" y="570" class="s">• Web UI hosting (runs locally for the demo)</text>
+<path d="M190,110L258,130" class="a"/><path d="M640,120L718,95" class="a"/><path d="M640,160L718,180" class="a"/><path d="M450,190L350,213" class="a"/>
+<path d="M640,180L690,180L690,290L718,290" class="a"/><path d="M820,330L820,358" class="a"/><path d="M920,395L968,368" class="a"/><path d="M920,425L968,450" class="a"/><path d="M920,280L968,280" class="a"/>
+</svg>
