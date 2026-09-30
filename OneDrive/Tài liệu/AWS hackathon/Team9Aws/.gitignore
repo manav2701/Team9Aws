@@ -1,0 +1,32 @@
+﻿# AWS credentials - never commit these
+.aws/
+*.credentials
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+dist/
+build/
+
+# CDK
+cdk.out/
+.cache/
+
+# Environment files
+.env
+.env.local
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
