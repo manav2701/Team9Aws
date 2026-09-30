@@ -6,6 +6,7 @@ import { ChevronDown } from 'lucide-react';
 import { ChatMessageBubble, TypingIndicator } from '@/components/intake/ChatMessage';
 import { ChatInput } from '@/components/intake/ChatInput';
 import { PatientContextCard } from '@/components/intake/PatientContextCard';
+import { CallClinicCard } from '@/components/call/CallClinicCard';
 import { demoMessages, demoPatient } from '@/lib/utils/demo-data';
 import type { ChatMessage, PatientContext } from '@/lib/types/journey';
 import { cn } from '@/lib/utils/cn';
@@ -89,8 +90,11 @@ export default function IntakePage() {
       </div>
 
       {/* ── Desktop: patient context sidebar ── */}
-      <div className="hidden lg:flex flex-col w-80 xl:w-96 border-s border-border bg-subtle shrink-0">
+      <div className="hidden lg:flex flex-col w-80 xl:w-96 border-s border-border bg-subtle shrink-0 overflow-y-auto">
         <PatientContextCard patient={patient} />
+        <div className="px-lg pb-lg">
+          <CallClinicCard patient={patient} />
+        </div>
       </div>
 
       {/* ── Mobile: collapsible context panel ── */}
@@ -116,6 +120,9 @@ export default function IntakePage() {
           )}
         >
           <PatientContextCard patient={patient} />
+          <div className="px-lg pb-lg">
+            <CallClinicCard patient={patient} />
+          </div>
         </div>
       </div>
     </div>
