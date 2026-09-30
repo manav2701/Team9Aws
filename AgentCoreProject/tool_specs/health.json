@@ -1,0 +1,7 @@
+[
+  {"name": "get_patient_profile", "description": "Read a patient's history, medications, allergies.", "inputSchema": {"type": "object", "properties": {"patient_id": {"type": "string"}}, "required": ["patient_id"]}},
+  {"name": "check_medication_interactions", "description": "Flag interactions for a medication list.", "inputSchema": {"type": "object", "properties": {"medications": {"type": "array", "items": {"type": "string"}}}, "required": ["medications"]}},
+  {"name": "search_providers", "description": "Find providers by specialty and availability.", "inputSchema": {"type": "object", "properties": {"specialty": {"type": "string"}, "location": {"type": "string"}, "availability": {"type": "string"}}, "required": ["specialty"]}},
+  {"name": "book_appointment", "description": "Book an appointment.", "inputSchema": {"type": "object", "properties": {"provider_id": {"type": "string"}, "patient_id": {"type": "string"}, "date": {"type": "string"}}, "required": ["provider_id", "patient_id", "date"]}},
+  {"name": "generate_visit_summary", "description": "Prepare a doctor-ready summary.", "inputSchema": {"type": "object", "properties": {"patient_id": {"type": "string"}, "symptoms": {"type": "string"}, "duration": {"type": "string"}}, "required": ["patient_id", "symptoms", "duration"]}}
+]

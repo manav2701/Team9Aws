@@ -1,0 +1,33 @@
+# Minimal CDK bootstrap for the workshop account: assets bucket, container repo and version marker.
+# It creates no cdk-* IAM roles (the participant role may not create them); the app uses
+# CliCredentialsStackSynthesizer, so deploys run with the caller's own credentials.
+Description: Minimal CDK bootstrap (no roles) for AgentCore workshop deploys
+Resources:
+  StagingBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Sub cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault: { SSEAlgorithm: AES256 }
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+  ContainerAssetsRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Sub cdk-hnb659fds-container-assets-${AWS::AccountId}-${AWS::Region}
+  CdkBootstrapVersion:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /cdk-bootstrap/hnb659fds/version
+      Type: String
+      Value: "30"
+Outputs:
+  BucketName: { Value: !Ref StagingBucket }
+  BucketDomainName: { Value: !GetAtt StagingBucket.RegionalDomainName }
+  ImageRepositoryName: { Value: !Ref ContainerAssetsRepository }
+  BootstrapVersion: { Value: "30" }

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 580" width="2320" height="1160"><rect width="1160" height="580" fill="#fbfcfd"/><style>
+text{font-family:'Helvetica Neue',Arial,sans-serif;fill:#1d2a33}
+.t{font-size:15px;font-weight:700}.s{font-size:12.5px;fill:#4a5a66}.strong{font-weight:700;fill:#b42318}
+.lbl{font-size:13px;font-weight:700;letter-spacing:.4px}
+.box{fill:#ffffff;stroke:#b8c4cc;stroke-width:1.5}.dashed{stroke-dasharray:5 4}
+.zone{fill:#f3f7fa;stroke-width:1.5;stroke-dasharray:6 5}
+.m1s{stroke:#2f6db5}.m2s{stroke:#7a5bc4}.m4s{stroke:#c77700}
+.m1t{fill:#2f6db5}.m3t{fill:#0c7a64}
+.shield{fill:#e6f5f0;stroke:#0c7a64;stroke-width:3}
+.harness{fill:#e6f5f0;stroke:#0c7a64;stroke-width:2}
+.m1f{fill:#2f6db5}.m2f{fill:#7a5bc4}.m3f{fill:#0c7a64}.m4f{fill:#c77700}
+.ar{fill:none;stroke:#6b7b86;stroke-width:1.8;marker-end:url(#ah)}.m3a{stroke:#0c7a64}
+.ahead{fill:#6b7b86}
+</style><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahead"/></marker></defs>
+<rect x="370" y="30" width="340" height="370" rx="10" class="zone m1s"/>
+<text x="388" y="54" class="lbl m1t">AgentCore Runtime · M1</text>
+<rect x="390" y="70" width="300" height="92" rx="8" class="box m1s"/>
+<text x="406" y="98" class="t">HealthAgent (Strands)</text>
+<text x="406" y="120" class="s">system prompt · red-flag override</text>
+<text x="406" y="140" class="s">JSON reply for the app</text>
+<rect x="390" y="200" width="300" height="62" rx="8" class="box m1s"/>
+<text x="406" y="226" class="t">AgentCore Memory</text>
+<text x="406" y="247" class="s">returning patient context</text>
+<text x="390" y="300" class="s">Every model call passes the guardrail:</text>
+<text x="390" y="320" class="s">user input is checked on the way in,</text>
+<text x="390" y="340" class="s">the model's answer on the way out.</text>
+<text x="390" y="372" class="s strong">A red flag skips booking → emergency care now.</text>
+<rect x="20" y="70" width="120" height="70" rx="8" class="box"/>
+<text x="36" y="100" class="t">Person</text>
+<text x="36" y="121" class="s">phone browser</text>
+<rect x="172" y="70" width="180" height="70" rx="8" class="box m4s"/>
+<text x="188" y="100" class="t">Web app · M4</text>
+<text x="188" y="121" class="s">badge · booking · summary</text>
+<rect x="750" y="30" width="200" height="150" rx="10" class="shield"/>
+<text x="766" y="54" class="lbl m3t">Bedrock Guardrails · M3</text>
+<text x="766" y="73" class="s">3 denied topics · content filters</text>
+<rect x="770" y="92" width="160" height="68" rx="8" class="box"/>
+<text x="786" y="120" class="t">Bedrock model</text>
+<text x="786" y="141" class="s">Claude via Converse</text>
+<rect x="750" y="220" width="200" height="62" rx="8" class="box m2s"/>
+<text x="766" y="246" class="t">AgentCore Gateway</text>
+<text x="766" y="267" class="s">MCP tools · Cognito JWT</text>
+<rect x="750" y="320" width="200" height="80" rx="8" class="box m2s"/>
+<text x="766" y="346" class="t">Lambda tools · M2</text>
+<text x="766" y="366" class="s">profile · meds · providers</text>
+<text x="766" y="385" class="s">booking · visit summary</text>
+<rect x="990" y="290" width="150" height="56" rx="8" class="box m2s"/>
+<text x="1004" y="314" class="t">DynamoDB</text>
+<text x="1004" y="334" class="s">patients · providers</text>
+<rect x="990" y="366" width="150" height="56" rx="8" class="box m2s"/>
+<text x="1004" y="390" class="t">Knowledge Base</text>
+<text x="1004" y="410" class="s">triage · interactions</text>
+<rect x="990" y="60" width="150" height="62" rx="8" class="box dashed"/>
+<text x="1004" y="86" class="t">SSM Parameters</text>
+<text x="1004" y="107" class="s">ids, table names</text>
+<rect x="20" y="440" width="470" height="118" rx="10" class="harness"/>
+<text x="38" y="466" class="lbl m3t">M3 safety test harness</text>
+<text x="38" y="490" class="s">guardrail_check.py → ApplyGuardrail (no agent needed)</text>
+<text x="38" y="511" class="s">run_tests.py → invoke_agent_runtime, 18 prompts</text>
+<text x="38" y="532" class="s">results → test_results/*.csv → pass-rate slide</text>
+<g class="legend">
+<rect x="560" y="452" width="14" height="14" rx="3" class="sw m1f"/><text x="582" y="464" class="s">M1 Agent builder</text>
+<rect x="560" y="478" width="14" height="14" rx="3" class="sw m2f"/><text x="582" y="490" class="s">M2 Tools &amp; data</text>
+<rect x="760" y="452" width="14" height="14" rx="3" class="sw m3f"/><text x="782" y="464" class="s">M3 Safety &amp; testing (you)</text>
+<rect x="760" y="478" width="14" height="14" rx="3" class="sw m4f"/><text x="782" y="490" class="s">M4 UI &amp; demo</text>
+</g>
+<path d="M140,105 L170,105" class="ar"/>
+<path d="M352,105 L388,105" class="ar"/>
+<path d="M690,116 L768,122" class="ar m3a"/>
+<path d="M540,162 L540,198" class="ar"/>
+<path d="M690,150 L722,150 L722,251 L748,251" class="ar"/>
+<path d="M850,282 L850,318" class="ar"/>
+<path d="M950,345 L988,322" class="ar"/>
+<path d="M950,378 L988,392" class="ar"/>
+<path d="M250,440 L250,385 L368,385" class="ar m3a"/>
+<text x="258" y="377" class="s m3t">18 prompts</text>
+<path d="M490,540 L970,540 L970,160 L952,160" class="ar m3a"/>
+<text x="700" y="532" class="s m3t">ApplyGuardrail (direct check)</text>
+</svg>

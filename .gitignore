@@ -1,0 +1,13 @@
+.aws-env.sh
+.env
+.env.local
+.venv/
+__pycache__/
+node_modules/
+cdk.out/
+dist/
+.cache/
+.cli/
+*.log
+*.zip
+test_results/

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://schema.agentcore.aws.dev/v1/agentcore.json",
+  "name": "AgentCoreProject",
+  "version": 1,
+  "managedBy": "CDK",
+  "tags": {
+    "agentcore:created-by": "agentcore-cli",
+    "agentcore:project-name": "AgentCoreProject"
+  },
+  "runtimes": [
+    {
+      "name": "HealthAgent",
+      "build": "CodeZip",
+      "entrypoint": "main.py",
+      "codeLocation": "app/HealthAgent/",
+      "runtimeVersion": "PYTHON_3_14",
+      "networkMode": "PUBLIC",
+      "protocol": "HTTP",
+      "envVars": [
+        {
+          "name": "GUARDRAIL_ID",
+          "value": "zb5bp8vak7r6"
+        },
+        {
+          "name": "GATEWAY_TOKEN_ENDPOINT",
+          "value": "https://workshop-gw-937350295455.auth.us-west-2.amazoncognito.com/oauth2/token"
+        },
+        {
+          "name": "GATEWAY_CLIENT_ID",
+          "value": "4dfkj2c5qdutaahjoacerh4o6u"
+        },
+        {
+          "name": "GATEWAY_CLIENT_SECRET",
+          "value": "<set by setup.sh; do not commit>"
+        },
+        {
+          "name": "GATEWAY_SCOPE",
+          "value": "workshop-gateway/invoke"
+        },
+        {
+          "name": "BEDROCK_MODEL_ID",
+          "value": "us.anthropic.claude-sonnet-5"
+        },
+        {
+          "name": "GUARDRAIL_VERSION",
+          "value": "3"
+        }
+      ]
+    }
+  ],
+  "memories": [
+    {
+      "name": "health_memory",
+      "eventExpiryDuration": 7,
+      "strategies": [
+        {
+          "type": "USER_PREFERENCE",
+          "namespaceTemplates": [
+            "/users/{actorId}/preferences"
+          ]
+        }
+      ]
+    }
+  ],
+  "knowledgeBases": [],
+  "credentials": [
+    {
+      "authorizerType": "OAuthCredentialProvider",
+      "name": "workshop-gateway-oauth",
+      "discoveryUrl": "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_9QtgnuN10/.well-known/openid-configuration",
+      "vendor": "CustomOauth2",
+      "managed": true,
+      "usage": "inbound"
+    }
+  ],
+  "evaluators": [],
+  "onlineEvalConfigs": [],
+  "agentCoreGateways": [
+    {
+      "name": "workshop-gateway",
+      "protocolType": "MCP",
+      "description": "Gateway for workshop-gateway",
+      "targets": [
+        {
+          "name": "health",
+          "targetType": "lambdaFunctionArn",
+          "lambdaFunctionArn": {
+            "lambdaArn": "arn:aws:lambda:us-west-2:937350295455:function:workshop-health-tools",
+            "toolSchemaFile": "tool_specs/health.json"
+          }
+        }
+      ],
+      "authorizerType": "CUSTOM_JWT",
+      "authorizerConfiguration": {
+        "customJwtAuthorizer": {
+          "discoveryUrl": "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_9QtgnuN10/.well-known/openid-configuration",
+          "allowedClients": [
+            "4dfkj2c5qdutaahjoacerh4o6u"
+          ]
+        }
+      },
+      "enableSemanticSearch": true,
+      "exceptionLevel": "NONE"
+    }
+  ],
+  "policyEngines": [],
+  "configBundles": [],
+  "abTests": [],
+  "harnesses": [],
+  "datasets": [],
+  "capacityProviders": [],
+  "payments": []
+}
