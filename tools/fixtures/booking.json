@@ -1,0 +1,10 @@
+{
+  "provider_name": "Al Noor Neurology Clinic",
+  "specialty": "neurology",
+  "urgency": "SOON",
+  "patient_windows": [
+    "Thursday 2026-10-01, 09:00 to 12:00",
+    "Friday 2026-10-02, 14:00 to 18:00"
+  ],
+  "patient_name": "Test Patient One"
+}
