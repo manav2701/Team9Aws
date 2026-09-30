@@ -1,0 +1,12 @@
+{
+  "insurer_name": "Demo Health Insurance",
+  "policy_id": "DEMO-4471-9920",
+  "patient_name": "Test Patient One",
+  "provider_name": "Al Noor Neurology Clinic",
+  "doctor_name": "Dr. Sample",
+  "appointment_date": "2026-10-01",
+  "prescription_items": [
+    "Demo-medicine A 50 mg tablets, quantity 30",
+    "Demo-medicine B 10 mg tablets, quantity 14"
+  ]
+}

@@ -11,3 +11,5 @@ dist/
 *.log
 *.zip
 test_results/
+.pytest_cache/
+build/

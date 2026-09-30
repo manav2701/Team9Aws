@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shifa voice check</title>
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
+  button, select { font: inherit; padding: .5rem 1rem; margin: .25rem .25rem .25rem 0; }
+  #heard { min-height: 3rem; padding: .75rem; border: 1px solid #999; border-radius: .5rem; }
+  .bad { color: #b00020; } .ok { color: #0a7d32; }
+</style>
+</head>
+<body>
+<h1>Shifa voice check</h1>
+<p>Checks whether this browser can do patient voice intake with no AWS services:
+speech recognition (the patient talking) and speech synthesis (Shifa replying).
+Serve it from <code>http://localhost</code> and try it in Chrome and in Edge.</p>
+
+<label>Language
+  <select id="lang">
+    <option value="ar-AE">Arabic (UAE)</option>
+    <option value="en-US">English</option>
+  </select>
+</label>
+
+<h2>1. Recognition</h2>
+<button id="talk">Hold to talk</button>
+<p id="sttStatus"></p>
+<div id="heard" dir="auto"></div>
+
+<h2>2. Synthesis</h2>
+<button id="speak">Speak the sample line</button>
+<p id="ttsStatus"></p>
+<ul id="voices"></ul>
+
+<script>
+const SAMPLE = {
+  "ar-AE": "مرحباً، أنا شفاء. كيف يمكنني مساعدتك اليوم؟ هذه ليست استشارة طبية.",
+  "en-US": "Hello, I'm Shifa. How can I help you today? This is not medical advice.",
+};
+const $ = (id) => document.getElementById(id);
+const lang = () => $("lang").value;
+const status = (el, text, ok) => { el.textContent = text; el.className = ok ? "ok" : "bad"; };
+
+// --- recognition: push-to-talk, final transcript goes to the agent ---
+const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (!Recognition) {
+  status($("sttStatus"), "This browser has no speech recognition. Use Chrome or Edge.", false);
+  $("talk").disabled = true;
+} else {
+  const recognition = new Recognition();
+  recognition.interimResults = true;
+  recognition.continuous = true;
+  recognition.onresult = (event) => {
+    $("heard").textContent = Array.from(event.results, (r) => r[0].transcript).join(" ");
+  };
+  recognition.onerror = (event) => status($("sttStatus"), `Recognition error: ${event.error}`, false);
+  recognition.onstart = () => status($("sttStatus"), "Listening…", true);
+  recognition.onend = () => status($("sttStatus"), "Stopped.", true);
+  const start = () => { recognition.lang = lang(); $("heard").textContent = ""; try { recognition.start(); } catch {} };
+  const stop = () => recognition.stop();
+  $("talk").addEventListener("pointerdown", start);
+  $("talk").addEventListener("pointerup", stop);
+  $("talk").addEventListener("pointerleave", stop);
+}
+
+// --- synthesis: needs a voice for the language installed or provided by the browser ---
+const voicesFor = (code) => speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith(code.slice(0, 2)));
+function listVoices() {
+  const voices = voicesFor(lang());
+  $("voices").replaceChildren(...voices.map((v) => Object.assign(document.createElement("li"), { textContent: `${v.name} (${v.lang})` })));
+  status($("ttsStatus"), voices.length
+    ? `${voices.length} voice(s) available for ${lang()}.`
+    : `No ${lang()} voice in this browser. Try Edge, or install the language's speech pack in Windows settings.`, voices.length > 0);
+}
+speechSynthesis.onvoiceschanged = listVoices;
+$("lang").addEventListener("change", listVoices);
+listVoices();
+$("speak").addEventListener("click", () => {
+  const utterance = new SpeechSynthesisUtterance(SAMPLE[lang()]);
+  utterance.lang = lang();
+  utterance.voice = voicesFor(lang())[0] || null;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
+});
+</script>
+</body>
+</html>
