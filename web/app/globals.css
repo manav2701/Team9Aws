@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Shifa design tokens as CSS variables */
+    --color-primary: #0F766E;
+    --color-primary-dark: #115E59;
+    --color-primary-light: #CCFBF1;
+    --color-navy: #0F172A;
+    --color-slate: #475569;
+    --color-slate-muted: #64748B;
+    --color-app-bg: #F8FAFC;
+    --color-card: #FFFFFF;
+    --color-subtle: #F1F5F9;
+    --color-border: #E2E8F0;
+    --color-border-strong: #CBD5E1;
+    --color-success: #16A34A;
+    --color-success-bg: #DCFCE7;
+    --color-warning: #D97706;
+    --color-warning-bg: #FEF3C7;
+    --color-emergency: #DC2626;
+    --color-emergency-bg: #FEE2E2;
+    --color-info: #2563EB;
+    --color-info-bg: #DBEAFE;
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F8FAFC;
+    color: #0F172A;
+    font-family: Inter, 'Noto Sans Arabic', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* RTL support — applied on [locale] layout via dir attribute */
+  [dir="rtl"] {
+    text-align: right;
+  }
+
+  /* Focus visible ring — accessibility */
+  :focus-visible {
+    outline: 2px solid #0F766E;
+    outline-offset: 2px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F1F5F9;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94A3B8;
+  }
+}
+
+@layer utilities {
+  /* Safe area padding for mobile devices */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+}

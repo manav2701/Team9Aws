@@ -1,0 +1,160 @@
+{
+  "nav": {
+    "howItWorks": "How it works",
+    "myJourney": "My journey",
+    "startJourney": "Start a care journey",
+    "language": "Language",
+    "menu": "Menu",
+    "close": "Close menu"
+  },
+  "footer": {
+    "tagline": "AI Care Coordinator",
+    "navigation": "Navigation",
+    "howItWorks": "How it works",
+    "safety": "Safety",
+    "privacy": "Privacy",
+    "languages": "Languages",
+    "emergency": "Emergency",
+    "emergencyText": "For emergencies, call 998 in the UAE.",
+    "disclaimer": "Disclaimer",
+    "disclaimerText": "Shifa is a hackathon prototype using synthetic data. It does not provide medical advice, diagnosis, or treatment."
+  },
+  "landing": {
+    "hero": {
+      "eyebrow": "AI CARE COORDINATION",
+      "headline": "From \"I don't feel well\"\nto \"medicine at my door.\"",
+      "subheadline": "Shifa helps coordinate your care from the first conversation to your appointment, insurance approval, and pharmacy delivery — without pretending to be a doctor.",
+      "primaryCta": "Start a care journey",
+      "secondaryCta": "See how it works",
+      "safetyCopy": "AI care coordination, not medical advice.",
+      "journeyCard": {
+        "title": "Your Care Journey",
+        "intake": "Intake",
+        "urgency": "Urgency assessed",
+        "appointment": "Clinic appointment",
+        "insurance": "Insurance approval",
+        "pharmacy": "Pharmacy delivery",
+        "coordinating": "Shifa is coordinating the next step."
+      }
+    },
+    "problem": {
+      "title": "Healthcare is fragmented.",
+      "subtitle": "Getting care shouldn't require you to navigate three systems alone.",
+      "patient": "Patient",
+      "clinic": "Clinic",
+      "insurance": "Insurance",
+      "pharmacy": "Pharmacy",
+      "description": "Shifa coordinates every handoff — from intake to delivery."
+    },
+    "howItHelps": {
+      "title": "How Shifa helps",
+      "subtitle": "One conversation. Every step coordinated.",
+      "step1Title": "Talk to Shifa",
+      "step1Desc": "Voice or chat in Arabic or English",
+      "step2Title": "Find the right next step",
+      "step2Desc": "Navigate urgency and provider options",
+      "step3Title": "Coordinate the calls",
+      "step3Desc": "Clinic and insurance coordination",
+      "step4Title": "Follow the journey",
+      "step4Desc": "Track everything from one place"
+    },
+    "safety": {
+      "title": "Safety first",
+      "subtitle": "Shifa is a care coordinator, not a doctor.",
+      "neverTitle": "Shifa will never:",
+      "diagnose": "Diagnose",
+      "prescribe": "Prescribe",
+      "recommendTreatment": "Recommend treatment",
+      "interpretImages": "Interpret medical images",
+      "pretendHuman": "Pretend to be human",
+      "instead": "Instead, Shifa helps you navigate care safely."
+    },
+    "journey": {
+      "title": "Your complete care journey",
+      "intake": "Intake",
+      "triage": "Triage",
+      "appointment": "Appointment",
+      "doctor": "Doctor",
+      "insurance": "Insurance",
+      "pharmacy": "Pharmacy",
+      "delivered": "Delivered"
+    },
+    "bilingual": {
+      "title": "Speak your language",
+      "subtitle": "Shifa understands and responds in both Arabic and English, so you can communicate naturally.",
+      "arabic": "العربية",
+      "english": "English"
+    },
+    "cta": {
+      "title": "Ready to take the next step?",
+      "button": "Start your care journey",
+      "safety": "AI care coordination, not medical advice."
+    }
+  },
+  "intake": {
+    "title": "Start your care journey",
+    "placeholder": "Tell Shifa how you're feeling...",
+    "send": "Send",
+    "voice": "Talk to Shifa",
+    "addPhoto": "Add photo",
+    "disclaimer": "This is not medical advice.",
+    "patientContext": {
+      "title": "Patient context",
+      "profile": "Profile",
+      "medications": "Medications",
+      "allergies": "Allergies",
+      "currentJourney": "Current journey"
+    },
+    "welcome": "Hello, I'm Shifa — your AI care coordinator.\n\nI can help guide you to the right care, coordinate your appointment, and follow your journey — but I'm not a doctor and I won't diagnose or prescribe.\n\nHow are you feeling today?"
+  },
+  "journey": {
+    "title": "Care Journey",
+    "currentStep": "Current step",
+    "steps": {
+      "intake": "Intake",
+      "triaged": "Triaged",
+      "emergency": "Emergency",
+      "bookingCall": "Booking call",
+      "booked": "Booked",
+      "visitDone": "Visit done",
+      "insuranceCall": "Insurance call",
+      "needsInfo": "Needs information",
+      "approved": "Approved",
+      "pharmacyOrder": "Pharmacy order",
+      "delivered": "Delivered"
+    },
+    "appointment": "Appointment",
+    "insurance": "Insurance",
+    "prescription": "Prescription",
+    "delivery": "Delivery",
+    "activity": "Activity",
+    "notStarted": "Not started",
+    "inProgress": "In progress",
+    "completed": "Completed"
+  },
+  "clinic": {
+    "title": "Shifa Clinic",
+    "appointments": "Appointments",
+    "patients": "Patients",
+    "todayTitle": "Today's appointments",
+    "open": "Open",
+    "patientSummary": "Patient summary",
+    "reasonForVisit": "Reason for visit",
+    "symptomTimeline": "Symptom timeline",
+    "relevantHistory": "Relevant history",
+    "medications": "Current medications",
+    "allergies": "Allergies",
+    "urgency": "Urgency",
+    "uploadPrescription": "Upload prescription",
+    "prescriptionUploaded": "Prescription uploaded",
+    "processing": "Processing..."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "notMedicalAdvice": "This is not medical advice.",
+    "emergency998": "998",
+    "emergencyUAE": "UAE Ambulance"
+  }
+}
