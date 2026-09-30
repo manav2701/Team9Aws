@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="2400" height="1240">
+<rect width="1200" height="620" fill="#fbfcfd"/>
+<style>text{font-family:'Helvetica Neue',Arial,sans-serif;fill:#1d2a33}.t{font-size:15px;font-weight:700}.s{font-size:12px;fill:#4a5a66}.h{font-size:13px;font-weight:700;letter-spacing:.5px}
+.lam{fill:#fff6e8;stroke:#c77700;stroke-width:2}.bed{fill:#e6f5f0;stroke:#0c7a64;stroke-width:2}.ac{fill:#eef3fb;stroke:#2f6db5;stroke-width:2}.db{fill:#f3effb;stroke:#7a5bc4;stroke-width:2}.ext{fill:#fff;stroke:#6b7b86;stroke-width:1.8;stroke-dasharray:5 4}
+.a{fill:none;stroke:#6b7b86;stroke-width:1.8;marker-end:url(#m)}.lbl{font-size:11px;fill:#6b7b86}</style>
+<defs><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#6b7b86"/></marker></defs>
+<text x="20" y="34" class="t" style="font-size:20px">Shifa / Health Companion: microservice architecture (AWS us-west-2)</text>
+<rect x="20" y="250" width="130" height="70" rx="8" class="ext"/><text x="34" y="280" class="t">Patient</text><text x="34" y="300" class="s">browser / phone</text>
+<rect x="190" y="230" width="200" height="110" rx="10" class="lam"/><text x="206" y="256" class="h" style="fill:#c77700">λ WEB SERVICE</text><text x="206" y="278" class="t">workshop-shifa-web</text><text x="206" y="298" class="s">Next.js + Lambda Web Adapter</text><text x="206" y="316" class="s">public function URL</text><text x="206" y="332" class="s">/api/chat · /api/patient · /api/call</text>
+<rect x="440" y="60" width="240" height="130" rx="10" class="ac"/><text x="456" y="86" class="h" style="fill:#2f6db5">AGENT SERVICE</text><text x="456" y="108" class="t">AgentCore Runtime</text><text x="456" y="128" class="s">HealthAgent (Strands, Python)</text><text x="456" y="146" class="s">+ AgentCore Memory</text><text x="456" y="164" class="s">red-flag rule → emergency</text>
+<rect x="740" y="40" width="200" height="70" rx="10" class="bed"/><text x="756" y="66" class="h" style="fill:#0c7a64">BEDROCK</text><text x="756" y="86" class="t">Guardrail v3</text><text x="756" y="102" class="s">blocks diagnosis / dosing</text>
+<rect x="740" y="130" width="200" height="70" rx="10" class="bed"/><text x="756" y="156" class="h" style="fill:#0c7a64">BEDROCK</text><text x="756" y="176" class="t">Claude Sonnet 5</text><text x="756" y="192" class="s">reasoning + tool use</text>
+<rect x="440" y="240" width="240" height="90" rx="10" class="ac"/><text x="456" y="266" class="h" style="fill:#2f6db5">TOOL GATEWAY</text><text x="456" y="288" class="t">AgentCore Gateway (MCP)</text><text x="456" y="306" class="s">Cognito JWT auth</text>
+<rect x="740" y="240" width="200" height="110" rx="10" class="lam"/><text x="756" y="266" class="h" style="fill:#c77700">λ TOOLS SERVICE</text><text x="756" y="288" class="t">workshop-health-tools</text><text x="756" y="306" class="s">get_patient_profile</text><text x="756" y="322" class="s">search_providers · book</text><text x="756" y="338" class="s">meds check · visit summary</text>
+<rect x="990" y="220" width="190" height="70" rx="10" class="db"/><text x="1004" y="246" class="h" style="fill:#7a5bc4">DYNAMODB</text><text x="1004" y="266" class="t">patients · providers</text>
+<rect x="990" y="310" width="190" height="70" rx="10" class="bed"/><text x="1004" y="336" class="h" style="fill:#0c7a64">BEDROCK KB</text><text x="1004" y="356" class="t">triage guidance</text>
+<rect x="440" y="430" width="240" height="120" rx="10" class="lam"/><text x="456" y="456" class="h" style="fill:#c77700">λ VOICE SERVICE</text><text x="456" y="478" class="t">workshop-shifa-calls</text><text x="456" y="498" class="s">calls clinic / insurer</text><text x="456" y="514" class="s">function URL = Twilio webhook</text><text x="456" y="530" class="s">Bedrock Claude Haiku 4.5 talks</text>
+<rect x="740" y="430" width="160" height="60" rx="10" class="ext"/><text x="756" y="458" class="t">Twilio</text><text x="756" y="476" class="s">phone line</text>
+<rect x="740" y="505" width="160" height="50" rx="10" class="db"/><text x="756" y="535" class="t">DynamoDB calls</text>
+<rect x="920" y="505" width="140" height="50" rx="10" class="db"/><text x="934" y="535" class="t">SNS results</text>
+<path d="M150,285L188,285" class="a"/>
+<path d="M390,260L420,260L420,125L438,125" class="a"/><text x="330" y="222" class="lbl">invoke agent</text>
+<path d="M680,90L738,78" class="a"/><path d="M680,150L738,165" class="a"/>
+<path d="M560,190L560,238" class="a"/><path d="M680,285L738,285" class="a"/>
+<path d="M940,270L988,258" class="a"/><path d="M940,320L988,343" class="a"/>
+<path d="M290,340L290,490L438,490" class="a"/><text x="298" y="420" class="lbl">"Call now"</text>
+<path d="M680,460L738,460" class="a"/><path d="M680,530L738,530" class="a"/><path d="M900,530L918,530" class="a"/>
+<rect x="20" y="570" width="12" height="12" class="lam"/><text x="38" y="581" class="s">Lambda microservice</text>
+<rect x="190" y="570" width="12" height="12" class="ac"/><text x="208" y="581" class="s">AgentCore</text>
+<rect x="300" y="570" width="12" height="12" class="bed"/><text x="318" y="581" class="s">Bedrock</text>
+<rect x="400" y="570" width="12" height="12" class="db"/><text x="418" y="581" class="s">Data / messaging</text>
+</svg>
