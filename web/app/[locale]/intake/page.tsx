@@ -1,20 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ChevronDown } from 'lucide-react';
 import { ChatMessageBubble, TypingIndicator } from '@/components/intake/ChatMessage';
 import { ChatInput } from '@/components/intake/ChatInput';
 import { PatientContextCard } from '@/components/intake/PatientContextCard';
 import { demoMessages, demoPatient } from '@/lib/utils/demo-data';
-import type { ChatMessage } from '@/lib/types/journey';
+import type { ChatMessage, PatientContext } from '@/lib/types/journey';
 import { cn } from '@/lib/utils/cn';
+
+// Demo patient in the workshop DynamoDB table (hypertension, amlodipine).
+const PATIENT_ID = 'PAT-01';
 
 export default function IntakePage() {
   const t = useTranslations('intake');
-  const [messages, setMessages] = useState<ChatMessage[]>(demoMessages);
+  const [messages, setMessages] = useState<ChatMessage[]>(demoMessages.slice(0, 1));
   const [isTyping, setIsTyping] = useState(false);
   const [contextOpen, setContextOpen] = useState(false);
+  const [patient, setPatient] = useState<PatientContext>(demoPatient);
+  const sessionId = useRef(`shifa-${crypto.randomUUID()}`);
+
+  useEffect(() => {
+    fetch(`/api/patient/${PATIENT_ID}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((p: PatientContext | null) => p && setPatient(p))
+      .catch(() => {});
+  }, []);
 
   const handleSend = (text: string) => {
     const userMsg: ChatMessage = {
@@ -26,18 +38,29 @@ export default function IntakePage() {
     setMessages((prev) => [...prev, userMsg]);
     setIsTyping(true);
 
-    // Simulated response delay — backend not connected yet
-    setTimeout(() => {
-      const assistantMsg: ChatMessage = {
-        id: `msg-${Date.now() + 1}`,
-        role: 'assistant',
-        content:
-          'Thank you. I\'ll use that information to help find the right next step for you.\n\nAre you currently experiencing any other symptoms, or is the headache your main concern right now?',
-        timestamp: new Date().toISOString(),
-      };
-      setMessages((prev) => [...prev, assistantMsg]);
-      setIsTyping(false);
-    }, 1500);
+    const reply = (content: string, extra: Partial<ChatMessage> = {}) =>
+      setMessages((prev) => [
+        ...prev,
+        { id: `msg-${Date.now() + 1}`, role: 'assistant', content, timestamp: new Date().toISOString(), ...extra },
+      ]);
+
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: text,
+        patientId: PATIENT_ID,
+        sessionId: sessionId.current,
+        history: messages.map((m) => ({ role: m.role, content: m.content })),
+      }),
+    })
+      .then(async (r) => {
+        const data = await r.json();
+        if (!r.ok) throw new Error(data.error ?? 'The agent did not respond.');
+        reply(data.reply, { isRefusal: data.refused, isEmergency: data.urgency === 'EMERGENCY' });
+      })
+      .catch((err: Error) => reply(err.message))
+      .finally(() => setIsTyping(false));
   };
 
   return (
@@ -67,7 +90,7 @@ export default function IntakePage() {
 
       {/* ── Desktop: patient context sidebar ── */}
       <div className="hidden lg:flex flex-col w-80 xl:w-96 border-s border-border bg-subtle shrink-0">
-        <PatientContextCard patient={demoPatient} />
+        <PatientContextCard patient={patient} />
       </div>
 
       {/* ── Mobile: collapsible context panel ── */}
@@ -92,7 +115,7 @@ export default function IntakePage() {
             contextOpen ? 'max-h-96 overflow-y-auto' : 'max-h-0'
           )}
         >
-          <PatientContextCard patient={demoPatient} />
+          <PatientContextCard patient={patient} />
         </div>
       </div>
     </div>
